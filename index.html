@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll effect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+
+        .left-section, .right-section {
+            flex: 1;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left-section {
+            background-color: #ffffff;
+            color: black;
+        }
+
+        .right-section {
+            background-color: #000000;
+            color: white;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            width: 100%;
+        }
+
+        .left-section ul {
+            animation: scroll-auto 5s linear infinite, change-colors 15s linear infinite 5s;
+            top: 0%;
+            transform: translateY(105%);
+        }
+
+        .right-section ul {
+            animation: scroll-auto-reverse 5s linear infinite, change-colors 15s linear infinite 5s;
+            top: 100%;
+            transform: translateY(-105%);
+        }
+
+        li {
+            font-size: 30px;
+            padding: 4%;
+            text-align: left;
+        }
+
+        @keyframes scroll-auto {
+            0% { transform: translateY(0); }
+            95% { transform: translateY(-105%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes scroll-auto-reverse {
+            0% { transform: translateY(-105%); }
+            95% { transform: translateY(0); }
+            100% { transform: translateY(-105%); }
+        }
+
+        @keyframes change-colors {
+            0% { color: #FFFF00; }
+            25% { color: #FF00FF; }
+            50% { color: #00FFFF; }
+            75% { color: #ff1500; }
+            100% { color: #001aff; }
+        }
+    </style>
+</head>
+<body>
+    <div class="left-section">
+        <ul>
+            <li></li>
+            <li>L’effet dopamine : pourquoi ne pouvons-nous pas arrêter de scroller ?</li>
+            <li>Le scroll infini n'est pas qu'un simple geste :
+                c’est un piège psychologique conçu pour capter notre attention.
+                Chaque fois que nous faisons défiler l’écran, notre cerveau cherche une récompense :
+                un meme drôle, une nouvelle choquante ou une photo inspirante.
+                Ces petites doses de contenu activent la libération de dopamine,
+                l’hormone du plaisir, créant une sensation momentanée de satisfaction.
+                Mais cette récompense est éphémère, ce qui nous pousse à continuer à scroller pour en obtenir davantage.
+                Ce cycle, savamment orchestré par les plateformes numériques, peut devenir une habitude addictive,
+                affectant notre productivité et notre bien-être.</li>
+            <li>Combien de fois avez-vous dit « juste cinq minutes de plus » pour finalement perdre deux heures ?</li>
+        </ul>
+    </div>
+    <div class="right-section">
+        <ul>
+            <li></li>
+            <li>Scroller dans le vide : scroll et la perte du temps</li>
+            <li>Le scroll infini ne nous accroche pas seulement ;
+                il déforme aussi notre perception du temps.
+                Vous est-il déjà arrivé de commencer à scroller et de réaliser soudainement que des heures ont passé ?
+                Ce phénomène, appelé « time distortion » (distorsion du temps),
+                se produit parce que le scroll nous plonge dans un flux constant de contenu,
+                sans points d'arrêt clairs. Les plateformes numériques suppriment délibérément les repères temporels,
+                comme les horloges ou les limites de pages, pour que nous perdions la notion du temps.
+                Résultat : des heures perdues dans un cycle sans fin de scroll, sans but précis.</li>
+            <li>Que pourriez-vous faire du temps que vous perdez à scroller ?</li>
+        </ul>
+    </div>
+</body>
+</html>
