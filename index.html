@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>scroll effect</title>
+    <title>Scroll Effect</title>
     <style>
         * {
             margin: 0;
@@ -16,27 +16,46 @@
             display: flex;
             overflow: hidden;
             font-family: sans-serif;
-            font-weight: 600;
+            font-weight: 500;
+            cursor: crosshair;
         }
 
-        .left-section, .right-section {
-            flex: 1;
+        /* Contenedores de fondo */
+        .bg-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            z-index: -1;
+        }
+
+        .left-bg, .right-bg {
+            height: 100vh;
+            will-change: width; 
+            transition: width 0.05s linear; 
+        }
+
+        .left-bg {
+            width: 50%;
+        }
+
+        .right-bg {
+            width: 50%;
+        }
+
+        /* Contenedores de texto */
+        .text-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+        }
+
+        .left-text, .right-text {
+            width: 50%;
             height: 100vh;
             overflow: hidden;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .left-section {
-            background-color: #ffffff;
-            color: black;
-        }
-
-        .right-section {
-            background-color: #000000;
-            color: white;
         }
 
         ul {
@@ -47,16 +66,14 @@
             width: 100%;
         }
 
-        .left-section ul {
-            animation: scroll-auto 5s linear infinite, change-colors 15s linear infinite 5s;
-            top: 0%;
-            transform: translateY(105%);
+        .left-text ul {
+            animation: scroll-up 10s linear infinite;
+            top: 0;
         }
 
-        .right-section ul {
-            animation: scroll-auto-reverse 5s linear infinite, change-colors 15s linear infinite 5s;
-            top: 100%;
-            transform: translateY(-105%);
+        .right-text ul {
+            animation: scroll-down 10s linear infinite;
+            top: 0;
         }
 
         li {
@@ -65,32 +82,41 @@
             text-align: left;
         }
 
-        @keyframes scroll-auto {
-            0% { transform: translateY(0); }
-            95% { transform: translateY(-105%); }
-            100% { transform: translateY(0); }
+        @keyframes scroll-up {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-100%); }
         }
 
-        @keyframes scroll-auto-reverse {
-            0% { transform: translateY(-105%); }
-            95% { transform: translateY(0); }
-            100% { transform: translateY(-105%); }
+        @keyframes scroll-down {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
         }
 
-        @keyframes change-colors {
-            0% { color: #FFFF00; }
-            25% { color: #FF00FF; }
-            50% { color: #00FFFF; }
-            75% { color: #ff1500; }
-            100% { color: #001aff; }
+        /* Divisor invisible */
+        .divider {
+            position: absolute;
+            width: 0;
+            height: 100%;
+            left: 50%;
+            pointer-events: none;
         }
+        
     </style>
 </head>
 <body>
-    <div class="left-section">
+
+    <div class="bg-container">
+        <div class="left-bg" id="leftBg"></div>
+        <div class="right-bg" id="rightBg"></div>
+        <div class="divider" id="divider"></div>
+    </div>
+
+
+    <div class="text-container">
+        <div class="left-text" id="leftText">
         <ul>
             <li></li>
-            <li>L’effet dopamine : pourquoi ne pouvons-nous pas arrêter de scroller ?</li>
+            <li>L’effet dopamine : pourquoi ne pouvons&#8288;&#8211;&#8288;nous pas arrêter de scroller ?</li>
             <li>Le scroll infini n'est pas qu'un simple geste :
                 c’est un piège psychologique conçu pour capter notre attention.
                 Chaque fois que nous faisons défiler l’écran, notre cerveau cherche une récompense :
@@ -99,24 +125,86 @@
                 l’hormone du plaisir, créant une sensation momentanée de satisfaction.
                 Mais cette récompense est éphémère, ce qui nous pousse à continuer à scroller pour en obtenir davantage.
                 Ce cycle, savamment orchestré par les plateformes numériques, peut devenir une habitude addictive,
-                affectant notre productivité et notre bien-être.</li>
-            <li>Combien de fois avez-vous dit « juste cinq minutes de plus » pour finalement perdre deux heures ?</li>
+                affectant notre productivité et notre bien&#8288;&#8211;&#8288;être.</li>
+            <li>Combien de fois avez&#8288;&#8211;&#8288;vous dit « juste cinq minutes de plus » pour finalement perdre deux heures ?</li>
         </ul>
     </div>
-    <div class="right-section">
+    <div class="right-text" id="rightText">
         <ul>
             <li></li>
             <li>Scroller dans le vide : scroll et la perte du temps</li>
             <li>Le scroll infini ne nous accroche pas seulement ;
                 il déforme aussi notre perception du temps.
-                Vous est-il déjà arrivé de commencer à scroller et de réaliser soudainement que des heures ont passé ?
+                Vous est&#8288;&#8211;&#8288;il déjà arrivé de commencer à scroller et de réaliser soudainement que des heures ont passé ?
                 Ce phénomène, appelé « time distortion » (distorsion du temps),
                 se produit parce que le scroll nous plonge dans un flux constant de contenu,
                 sans points d'arrêt clairs. Les plateformes numériques suppriment délibérément les repères temporels,
                 comme les horloges ou les limites de pages, pour que nous perdions la notion du temps.
                 Résultat : des heures perdues dans un cycle sans fin de scroll, sans but précis.</li>
-            <li>Que pourriez-vous faire du temps que vous perdez à scroller ?</li>
+            <li>Que pourriez&#8288;&#8211;&#8288;vous faire du temps que vous perdez à scroller ?</li>
         </ul>
-    </div>
+    <div>
+        <script>
+            // Paleta de colores
+            const colorSets = [
+                { left: { bg: "#FFFF00", text: "#FF0000" }, right: { bg: "#004d00", text: "#FF0000" } },
+                { left: { bg: "#66FFFD", text: "#000000" }, right: { bg: "#FF7000", text: "#000000" } },
+                { left: { bg: "#FDADFF", text: "#4F0095" }, right: { bg: "#83FC55", text: "#4F0095" } },
+                { left: { bg: "#272EC8", text: "#DFFFB0" }, right: { bg: "#7F4300", text: "#DFFFB0" } },
+                { left: { bg: "#000000", text: "#FFFF00" }, right: { bg: "#E20000", text: "#FFFF00" } }
+            ];
+    
+            // Cache de elementos
+            const leftBg = document.getElementById('leftBg');
+            const rightBg = document.getElementById('rightBg');
+            const leftText = document.getElementById('leftText');
+            const rightText = document.getElementById('rightText');
+            const divider = document.getElementById('divider');
+    
+            // Control de movimiento optimizado
+            let animationFrameId;
+            const handleMouseMove = (e) => {
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                }
+                
+                animationFrameId = requestAnimationFrame(() => {
+                    const percentage = (e.clientX / window.innerWidth) * 100;
+                    leftBg.style.width = `${percentage}%`;
+                    rightBg.style.width = `${100 - percentage}%`;
+                    divider.style.left = `${percentage}%`;
+                });
+            };
+    
+            document.addEventListener('mousemove', handleMouseMove, { passive: true });
+    
+            // Rotación de colores
+            let currentSet = 0;
+            const updateColors = () => {
+                const colors = colorSets[currentSet];
+                
+                leftBg.style.backgroundColor = colors.left.bg;
+                rightBg.style.backgroundColor = colors.right.bg;
+                leftText.style.color = colors.left.text;
+                rightText.style.color = colors.right.text;
+            };
+    
+            const colorInterval = setInterval(() => {
+                currentSet = (currentSet + 1) % colorSets.length;
+                updateColors();
+            }, 10000);
+    
+            // Inicialización
+            updateColors();
+    
+            // Limpieza
+            window.addEventListener('beforeunload', () => {
+                document.removeEventListener('mousemove', handleMouseMove);
+                clearInterval(colorInterval);
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                }
+            });
+        </script>
 </body>
 </html>
